@@ -14,7 +14,7 @@ function TemplateOne() {
 
   return (
     <div className="flex flex-col space-y-10">
-      <p className="text-lg">TemplateOne:{recievedMessage}</p>{" "}
+      <p className="text-lg">TemplateB:{recievedMessage}</p>{" "}
       <button onClick={() => sendMessage()}>send message to parent</button>
     </div>
   );
