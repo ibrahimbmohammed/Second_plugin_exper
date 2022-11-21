@@ -7,6 +7,7 @@ function TemplateOne() {
     window.parent.postMessage("hi from child", "http://localhost:3001");
   };
   useEffect(() => {
+    console.log("hi in b");
     window.addEventListener("message", function (e) {
       setRecievedMessage("got from parent" + e.data);
     });
@@ -14,7 +15,9 @@ function TemplateOne() {
 
   return (
     <div className="flex flex-col space-y-10">
-      <p className="text-lg">TemplateB:{recievedMessage}</p>{" "}
+      <p className="text-lg h-full w-full bg-green-600">
+        TemplateB:{recievedMessage}
+      </p>{" "}
       <button onClick={() => sendMessage()}>send message to parent</button>
     </div>
   );
