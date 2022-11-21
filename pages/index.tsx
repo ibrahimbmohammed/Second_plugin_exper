@@ -10,7 +10,7 @@ function Home() {
     // @ts-ignore
     IframeRef.current.contentWindow.postMessage(
       "hello son",
-      "http://localhost:3001"
+      "https://preeminent-zuccutto-747fd5.netlify.app/"
     );
   };
 
@@ -18,27 +18,31 @@ function Home() {
 
   useEffect(() => {
     window.addEventListener("message", function (e) {
-      setRecievedMessage("got from parent" + e.data);
+      setRecievedMessage("got from parent " + " " + e.data);
     });
   }, [recievedMessage]);
 
-  return (
-    <div className="w-full  h-[100vh]">
-      <div className="flex items-center justify-between h-5 w-full bg-slate-500">
-        <button onClick={() => sendMessage()}>send message to child</button>
-        <div className="">from child peddlesoft: {recievedMessage}</div>
-        <Link href="/login">Log in</Link>
-      </div>
+  useEffect(() => {
+    sendMessage();
+  }, []);
 
-      <iframe
+  return (
+    <div className="w-full  h-[100vh] bg-gray-500 flex items-center justify-center">
+      {/* <div className="flex items-center justify-between h-5 w-full bg-slate-500">
+      </div> */}
+      {/* <button onClick={() => sendMessage()}>send message to child</button> */}
+      {/* <Link href="/login">Log in</Link> */}
+
+      <div className="">from child peddlesoft: {recievedMessage}</div>
+      {/* <iframe
         ref={IframeRef}
         className="w-full h-[100%]"
         id="inlineFrameExample"
         title="Inline Frame Example"
         width="w-full"
         // height="h-screen"
-        src="/template-a"
-      ></iframe>
+        src="https://preeminent-zuccutto-747fd5.netlify.app/"
+      ></iframe> */}
     </div>
   );
 }
