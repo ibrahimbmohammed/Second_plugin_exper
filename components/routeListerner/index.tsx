@@ -24,8 +24,11 @@ export const RoutingListener = () => {
       const action = get(data, "action");
       console.log("inside child", event, data);
       if (action === IFrameActions.NAVIGATION) {
+        console.log("inside child nav func");
         const path = get(data, "path");
+        console.log("i ran before", path);
         path && history.replace(path);
+        console.log("i ran after", path);
       }
     });
   }, []);
