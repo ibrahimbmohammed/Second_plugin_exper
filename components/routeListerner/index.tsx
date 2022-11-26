@@ -1,6 +1,6 @@
 import { get } from "lodash";
 import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/router";
 
 const IFrameActions = {
   NAVIGATION: "NAVIGATION",
@@ -10,7 +10,7 @@ const IFrameActions = {
 // This application is rendered through an IFrame by a parent application.
 // Here we are listening for messages from the parent, handling routing, etc...
 export const RoutingListener = () => {
-  const navigate = useNavigate();
+  const history = useRouter();
 
   useEffect(() => {
     window.addEventListener("message", (event) => {
@@ -27,7 +27,7 @@ export const RoutingListener = () => {
         console.log("inside child nav func");
         const path = get(data, "path");
         console.log("i ran before", path);
-        path && navigate(path, { replace: true });
+        path && history.push(path);
         console.log("i ran after", path);
       }
     });
