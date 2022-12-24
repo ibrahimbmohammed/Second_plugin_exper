@@ -119,7 +119,7 @@ export const IFrameRouterContextProvider = ({ children }: any) => {
       navigateToMainPage();
     }
 
-    if (iframeRef) {
+    if (iframeRef.current) {
       console.log("the ref", iframeRef);
       // add a safety net
       // @ts-ignore

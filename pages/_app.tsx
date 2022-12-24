@@ -31,42 +31,39 @@ const MyApp = ({ Component, pageProps }: ComponentWithPageLayout) => {
     client = apolloClient;
   }
   return (
-    <>
-      <RoutingListener />
-      <ApolloProvider client={client}>
-        <Provider store={store}>
-          <PersistGate loading={<PageLoadingSpinner />} persistor={persistor}>
-            <IFrameRouterContextProvider>
-              <PostMessageListener />
-              {Component.PageLayout ? (
-                <Component.PageLayout>
-                  <>
-                    <RoutingListener />
-                    <Component {...pageProps} />
-                  </>
-                </Component.PageLayout>
-              ) : (
+    <ApolloProvider client={client}>
+      <Provider store={store}>
+        <PersistGate loading={<PageLoadingSpinner />} persistor={persistor}>
+          <IFrameRouterContextProvider>
+            <PostMessageListener />
+            {Component.PageLayout ? (
+              <Component.PageLayout>
                 <>
                   <RoutingListener />
                   <Component {...pageProps} />
                 </>
-              )}
-            </IFrameRouterContextProvider>
-            <ToastContainer
-              position="top-right"
-              autoClose={2500}
-              hideProgressBar
-              newestOnTop={false}
-              closeOnClick
-              rtl={false}
-              pauseOnFocusLoss
-              draggable
-              pauseOnHover
-            />
-          </PersistGate>
-        </Provider>
-      </ApolloProvider>
-    </>
+              </Component.PageLayout>
+            ) : (
+              <>
+                <RoutingListener />
+                <Component {...pageProps} />
+              </>
+            )}
+          </IFrameRouterContextProvider>
+          <ToastContainer
+            position="top-right"
+            autoClose={2500}
+            hideProgressBar
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+          />
+        </PersistGate>
+      </Provider>
+    </ApolloProvider>
   );
 };
 
