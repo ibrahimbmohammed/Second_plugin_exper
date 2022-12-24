@@ -33,7 +33,7 @@ const getIframeSource = () => {
   return IFRAME_APP_URL;
 };
 
-export const IFrameRouterContextProvider = ({ children }) => {
+export const IFrameRouterContextProvider = ({ children }: any) => {
   const iframeRef = useRef(null);
   //   const [iframeSrc, setIframeSrc] = useState('')
   //   // Important that it should only be called once.
@@ -51,6 +51,7 @@ export const IFrameRouterContextProvider = ({ children }) => {
   // Use this for all app routing.
   // It makes sure to handle IFrame visibility as well.
   // --------------------------------------------------------------------------
+  // @ts-ignore
   const navigate = ({ path, isIFrame, displayedURL }) => {
     // Stop navigation to the same path.
     const currentPath = window.location.pathname;
@@ -65,6 +66,7 @@ export const IFrameRouterContextProvider = ({ children }) => {
     if (isIFrame) {
       setIframeVisibility(true);
       if (iframeRef.current) {
+        // @ts-ignore
         iframeRef.current.contentWindow.postMessage(
           {
             action: IFrameActions.NAVIGATION,
@@ -88,9 +90,11 @@ export const IFrameRouterContextProvider = ({ children }) => {
         // Manually handle IFrame navigation
         setIframeVisibility(true); // You might delay this to avoid flickering of previous route in hidden iframe
         const route = getIFrameRoute();
+        // @ts-ignore
         iframeRef.current.contentWindow.postMessage(
           {
             action: IFrameActions.NAVIGATION,
+            // @ts-ignore
             path: route.path,
           },
           IFRAME_APP_URL
@@ -103,6 +107,7 @@ export const IFrameRouterContextProvider = ({ children }) => {
   };
 
   const navigateToMainPage = () => {
+    // @ts-ignore
     navigate(NAVIGATION_ROUTES.find(({ path }) => path === "/"));
   };
 
@@ -117,6 +122,7 @@ export const IFrameRouterContextProvider = ({ children }) => {
     if (iframeRef) {
       console.log("the ref", iframeRef);
       // add a safety net
+      // @ts-ignore
       iframeRef.current.onload = () => {
         console.log("IFrame loaded");
         window.addEventListener("popstate", handleBrowserBackForwardEvents);
