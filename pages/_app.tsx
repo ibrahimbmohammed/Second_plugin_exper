@@ -3,6 +3,7 @@ import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import "react-toastify/dist/ReactToastify.min.css";
 import { persistor, store } from "@store";
+import { RoutingListener } from "../components/routeListerner";
 import { ToastContainer } from "react-toastify";
 import type { AppProps } from "next/app";
 import { ApolloProvider } from "@apollo/client";
@@ -30,33 +31,42 @@ const MyApp = ({ Component, pageProps }: ComponentWithPageLayout) => {
     client = apolloClient;
   }
   return (
-    <ApolloProvider client={client}>
-      <Provider store={store}>
-        <PersistGate loading={<PageLoadingSpinner />} persistor={persistor}>
-          <IFrameRouterContextProvider>
-            <PostMessageListener />
-            {Component.PageLayout ? (
-              <Component.PageLayout>
-                <Component {...pageProps} />
-              </Component.PageLayout>
-            ) : (
-              <Component {...pageProps} />
-            )}
-          </IFrameRouterContextProvider>
-          <ToastContainer
-            position="top-right"
-            autoClose={2500}
-            hideProgressBar
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-          />
-        </PersistGate>
-      </Provider>
-    </ApolloProvider>
+    <>
+      <RoutingListener />
+      <ApolloProvider client={client}>
+        <Provider store={store}>
+          <PersistGate loading={<PageLoadingSpinner />} persistor={persistor}>
+            <IFrameRouterContextProvider>
+              <PostMessageListener />
+              {Component.PageLayout ? (
+                <Component.PageLayout>
+                  <>
+                    <RoutingListener />
+                    <Component {...pageProps} />
+                  </>
+                </Component.PageLayout>
+              ) : (
+                <>
+                  <RoutingListener />
+                  <Component {...pageProps} />
+                </>
+              )}
+            </IFrameRouterContextProvider>
+            <ToastContainer
+              position="top-right"
+              autoClose={2500}
+              hideProgressBar
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+            />
+          </PersistGate>
+        </Provider>
+      </ApolloProvider>
+    </>
   );
 };
 
