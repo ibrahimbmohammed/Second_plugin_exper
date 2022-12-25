@@ -1,6 +1,7 @@
 import { useState, useEffect, useLayoutEffect } from "react";
 import { WebsiteFaqTypeQuery } from "@gentypes/index";
 import useFetchQuery from "../../lib/hooks/fetch-query";
+import { getCookie } from "@lib/utils/cookies";
 
 function TemplateTwo() {
   const [recievedMessage, setRecievedMessage] = useState("");
@@ -16,19 +17,19 @@ function TemplateTwo() {
       setRecievedMessage("got from parent" + e.data);
     });
 
-    function getCookie(name: string) {
-      let cookie = {};
-      document.cookie.split(";").forEach(function (el) {
-        let [k, v] = el.split("=");
-        // @ts-ignore
-        cookie[k.trim()] = v;
-      });
-      // @ts-ignore
-      return cookie[name];
-    }
+    // function getCookie(name: string) {
+    //   let cookie = {};
+    //   document.cookie.split(";").forEach(function (el) {
+    //     let [k, v] = el.split("=");
+    //     // @ts-ignore
+    //     cookie[k.trim()] = v;
+    //   });
+    //   // @ts-ignore
+    //   return cookie[name];
+    // }
     const theCookie = getCookie("organizationId");
 
-    console.log("the cook", theCookie);
+    console.log("the cook ###########", theCookie);
   }, []);
 
   return (
