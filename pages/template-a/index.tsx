@@ -2,8 +2,10 @@ import { useState, useEffect, useLayoutEffect } from "react";
 import { WebsiteFaqTypeQuery } from "@gentypes/index";
 import useFetchQuery from "../../lib/hooks/fetch-query";
 import { getCookie } from "@lib/utils/cookies";
+import Cookies from "js-cookie";
 
 function TemplateTwo() {
+  Cookies.set("organizationId", "3", { sameSite: "None", secure: true });
   const [recievedMessage, setRecievedMessage] = useState("");
   const [faqData, , loading] = useFetchQuery<WebsiteFaqTypeQuery>("/api/faq");
   const sendMessage = () => {
