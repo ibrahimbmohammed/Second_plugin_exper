@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { IFrameActions } from "@lib/plugin-logic/plugin-context";
+import { get } from "lodash";
 
 // In case you want to act upon message recevied from the IFrame.
 export const PostMessageListener = () => {
@@ -10,12 +11,17 @@ export const PostMessageListener = () => {
       //   console.log('Incorrect origin',event.origin);
       //   return;
       // }
-      const message = event && event.data;
-      const action = message && message.action;
+      const data = get(event, "data");
+      const action = get(data, "action");
+      // const message = event && event.data;
+      // onst action = message && message.action;
 
       // Example of acting on a messages from the child iframe.
       if (action === IFrameActions.REFRESH) {
         window.location.reload();
+      }
+      if (action === IFrameActions.COOKIE) {
+        console.warn("hello world", data);
       }
     });
   }, []);

@@ -22,12 +22,12 @@ export const RoutingListener = () => {
 
       const data = get(event, "data");
       const action = get(data, "action");
-      console.log("inside child", event, data);
+      // console.log("inside child", event, data);
       if (action === IFrameActions.NAVIGATION) {
         const path = get(data, "path");
-        console.log("i ran before", path);
+        // console.log("i ran before", path);
         path && history.replace(path);
-        console.log("i ran after", path);
+        // console.log("i ran after", path);
       }
     });
   }, []);

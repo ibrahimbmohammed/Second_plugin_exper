@@ -3,9 +3,11 @@ import { NAVIGATION_ROUTES } from "../plugin-nav-items";
 // import { useHistory } from "react-router-dom";
 import { useRouter } from "next/router";
 import useDidMountEffect from "@lib/hooks/use-did-mount-effect";
+import { getCookie } from "@lib/utils/cookies";
 
 export const IFrameActions = {
   NAVIGATION: "NAVIGATION",
+  COOKIE: "COOKIE",
   REFRESH: "REFRESH",
 };
 
@@ -83,6 +85,39 @@ export const IFrameRouterContextProvider = ({ children }: any) => {
       router.push(path);
     }
   };
+
+  const sendCookie = ({ isIFrame = true }) => {
+    // Stop navigation to the same path.
+    // const currentPath = window.location.pathname;
+
+    // console.log("ins nav func", currentPath, isIFrame);
+    // if (
+    //   (isIFrame && displayedURL === currentPath) ||
+    //   (!isIFrame && path === currentPath)
+    // ) {
+    //   return;
+    // }
+    const cookievalue = getCookie("organizationId");
+    if (isIFrame) {
+      setIframeVisibility(true);
+      if (iframeRef.current) {
+        // @ts-ignore
+        iframeRef.current.contentWindow.postMessage(
+          {
+            action: IFrameActions.COOKIE,
+            cookievalue,
+          },
+          IFRAME_APP_URL
+        );
+        //history.push(displayedURL);
+        // router.push(displayedURL);
+      }
+    } else {
+      setIframeVisibility(false);
+      //history.push(path);
+      // router.push(path);
+    }
+  };
   const handleBrowserBackForwardEvents = () => {
     // Based on currently updated URL
     if (isInIFrameRoute()) {
@@ -140,6 +175,7 @@ export const IFrameRouterContextProvider = ({ children }: any) => {
     getIFrameRoute,
     isInIFrameRoute,
     navigate,
+    sendCookie,
     iframeSrc,
   };
   return (
