@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 
 const IFrameActions = {
   NAVIGATION: "NAVIGATION",
+  COOKIE: "COOKIE",
   REFRESH: "REFRESH",
 };
 
@@ -23,6 +24,9 @@ export const RoutingListener = () => {
       const data = get(event, "data");
       const action = get(data, "action");
       // console.log("inside child", event, data);
+      if (action === IFrameActions.COOKIE) {
+        console.warn("hello world", data);
+      }
       if (action === IFrameActions.NAVIGATION) {
         const path = get(data, "path");
         // console.log("i ran before", path);
