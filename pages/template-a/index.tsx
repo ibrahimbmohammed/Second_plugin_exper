@@ -29,11 +29,9 @@ function TemplateTwo() {
     //   return cookie[name];
     // }
     const theCookie = getCookie("organizationId");
-    // Cookies.set("organizationId", "3", { sameSite: "None", secure: true });
     if (!getCookie("organizationId")) {
       console.log("hi there ====>");
-      setCookie("organizationId", "3");
-      Cookies.set("organizationId", "3");
+      Cookies.set("organizationId", "3", { sameSite: "None", secure: true });
     }
 
     console.log("the cook ###########", theCookie);
