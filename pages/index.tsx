@@ -4,26 +4,26 @@ import { useRef, useState, useEffect } from "react";
 function Home() {
   const IframeRef = useRef(null);
 
-  const sendMessage = () => {
-    if (!IframeRef.current) return;
+  // const sendMessage = () => {
+  //   if (!IframeRef.current) return;
 
-    // @ts-ignore
-    IframeRef.current.contentWindow.postMessage(
-      "hello son",
-      "https://preeminent-zuccutto-747fd5.netlify.app/"
-    );
-  };
+  //   // @ts-ignore
+  //   IframeRef.current.contentWindow.postMessage(
+  //     "hello son",
+  //     "https://preeminent-zuccutto-747fd5.netlify.app/"
+  //   );
+  // };
 
-  const [recievedMessage, setRecievedMessage] = useState("");
+  // const [recievedMessage, setRecievedMessage] = useState("");
+
+  // useEffect(() => {
+  //   window.addEventListener("message", function (e) {
+  //     setRecievedMessage("got from parent " + " " + e.data);
+  //   });
+  // }, [recievedMessage]);
 
   useEffect(() => {
-    window.addEventListener("message", function (e) {
-      setRecievedMessage("got from parent " + " " + e.data);
-    });
-  }, [recievedMessage]);
-
-  useEffect(() => {
-    sendMessage();
+    // sendMessage();
   }, []);
 
   return (
@@ -33,7 +33,7 @@ function Home() {
       {/* <button onClick={() => sendMessage()}>send message to child</button> */}
       {/* <Link href="/login">Log in</Link> */}
 
-      <div className="">from child peddlesoft: {recievedMessage}</div>
+      <div className="">from child peddlesoft</div>
       {/* <iframe
         ref={IframeRef}
         className="w-full h-[100%]"

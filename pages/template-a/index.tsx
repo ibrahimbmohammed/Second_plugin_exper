@@ -8,16 +8,16 @@ function TemplateTwo() {
   Cookies.set("organizationId", "3", { sameSite: "None", secure: true });
   const [recievedMessage, setRecievedMessage] = useState("");
   const [faqData, , loading] = useFetchQuery<WebsiteFaqTypeQuery>("/api/faq");
-  const sendMessage = () => {
-    window.parent.postMessage("hi from child", "http://localhost:3001");
-  };
+  // const sendMessage = () => {
+  //   window.parent.postMessage("hi from child", "http://localhost:3001");
+  // };
   console.log("hi in a fetch hq", faqData);
   useEffect(() => {
-    console.log("hi in a");
-    window.addEventListener("message", function (e) {
-      // if (e.origin !== "http://localhost:3001") return; security mesures
-      setRecievedMessage("got from parent" + e.data);
-    });
+    // console.log("hi in a");
+    // window.addEventListener("message", function (e) {
+    //   // if (e.origin !== "http://localhost:3001") return; security mesures
+    //   setRecievedMessage("got from parent" + e.data);
+    // });
 
     // function getCookie(name: string) {
     //   let cookie = {};
@@ -39,7 +39,6 @@ function TemplateTwo() {
       <p className="text-lg  h-full w-full bg-indigo-600">
         TemplateA:{recievedMessage}
       </p>{" "}
-      <button onClick={() => sendMessage()}>send message to parent</button>
     </div>
   );
 }
