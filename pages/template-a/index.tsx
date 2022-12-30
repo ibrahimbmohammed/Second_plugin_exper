@@ -29,7 +29,11 @@ function TemplateTwo() {
     //   return cookie[name];
     // }
     const theCookie = getCookie("organizationId");
-    Cookies.set("organizationId", "3", { sameSite: "None", secure: true });
+    // Cookies.set("organizationId", "3", { sameSite: "None", secure: true });
+    if (!getCookie("organizationId")) {
+      Cookies.set("organizationId", "3");
+    }
+
     console.log("the cook ###########", theCookie);
   }, []);
 
