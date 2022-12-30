@@ -1,7 +1,7 @@
 import { useState, useEffect, useLayoutEffect } from "react";
 import { WebsiteFaqTypeQuery } from "@gentypes/index";
 import useFetchQuery from "../../lib/hooks/fetch-query";
-import { getCookie } from "@lib/utils/cookies";
+import { getCookie, setCookie } from "@lib/utils/cookies";
 import Cookies from "js-cookie";
 
 function TemplateTwo() {
@@ -32,6 +32,7 @@ function TemplateTwo() {
     // Cookies.set("organizationId", "3", { sameSite: "None", secure: true });
     if (!getCookie("organizationId")) {
       console.log("hi there ====>");
+      setCookie("organizationId", "3");
       Cookies.set("organizationId", "3");
     }
 
