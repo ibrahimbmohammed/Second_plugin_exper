@@ -31,7 +31,12 @@ function TemplateTwo() {
     const theCookie = getCookie("organizationId");
     if (!getCookie("organizationId")) {
       console.log("hi there ====>");
-      Cookies.set("organizationId", "3", { sameSite: "None", secure: true });
+      // document.cookie = `${name}=${value};${options}`;
+      const name = "organizationId";
+      const value = "3";
+      const options = { sameSite: "None", secure: true };
+      document.cookie = `${name}=${value};${options}`;
+      // Cookies.set("organizationId", "3", { sameSite: "None", secure: true });
     }
 
     console.log("the cook ###########", theCookie);
