@@ -15,8 +15,11 @@ export const PostMessageListener = () => {
       const action = get(data, "action");
       // const message = event && event.data;
       // onst action = message && message.action;
-      console.log("hello world event ===>", event);
-      console.log("hello world event loc===>", window?.location);
+      console.log("hello world event ===>", event?.origin);
+      console.log(
+        "hello world event loc===>",
+        window?.location?.ancestorOrigins
+      );
       // Example of acting on a messages from the child iframe.
       if (action === IFrameActions.REFRESH) {
         window.location.reload();

@@ -5,7 +5,6 @@ import { getCookie } from "@lib/utils/cookies";
 import Cookies from "js-cookie";
 
 function TemplateTwo() {
-  Cookies.set("organizationId", "3", { sameSite: "None", secure: true });
   const [recievedMessage, setRecievedMessage] = useState("");
   const [faqData, , loading] = useFetchQuery<WebsiteFaqTypeQuery>("/api/faq");
   // const sendMessage = () => {
@@ -30,7 +29,7 @@ function TemplateTwo() {
     //   return cookie[name];
     // }
     const theCookie = getCookie("organizationId");
-
+    Cookies.set("organizationId", "3", { sameSite: "None", secure: true });
     console.log("the cook ###########", theCookie);
   }, []);
 
