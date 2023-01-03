@@ -10,7 +10,7 @@ function Home() {
 
   return (
     <div className="w-full  h-[100vh] bg-gray-500 flex items-center justify-center">
-      <div className="">from child peddlesoft</div>
+      <div className="">from child peddlesoft second</div>
     </div>
   );
 }
