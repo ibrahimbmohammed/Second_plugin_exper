@@ -152,14 +152,14 @@ export const IFrameRouterContextProvider = ({ children }: any) => {
   }) => {
     // Stop navigation to the same path.
     const currentPath = window.location.pathname;
-    console.log("ins nav func", currentPath, isIFrame);
+    console.log("ins nav func", displayedURL, currentPath, isIFrame);
     if (
       (isIFrame && displayedURL === currentPath) ||
       (!isIFrame && path === currentPath)
     ) {
       return;
     }
-
+    console.log("ins nav func ===>  111");
     if (isIFrame) {
       setIframeVisibility(true);
       if (iframeRef.current) {
