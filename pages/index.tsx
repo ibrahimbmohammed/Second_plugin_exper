@@ -34,7 +34,7 @@ function Home() {
                   // @ts-ignore
                   iframeRouterContext.navigateParent({
                     path: "/",
-                    isIFrame: false,
+                    isIFrame: true,
                     displayedURL: "/",
                   })
                 }
@@ -47,7 +47,7 @@ function Home() {
                   // @ts-ignore
                   iframeRouterContext.navigateParent({
                     path: "/about",
-                    isIFrame: false,
+                    isIFrame: true,
                     displayedURL: "/about",
                   })
                 }
@@ -60,7 +60,7 @@ function Home() {
                   // @ts-ignore
                   iframeRouterContext.navigateParent({
                     path: "/about",
-                    isIFrame: false,
+                    isIFrame: true,
                     displayedURL: "/about",
                   })
                 }
