@@ -161,7 +161,7 @@ export const IFrameRouterContextProvider = ({ children }: any) => {
     }
     if (isIFrame) {
       setIframeVisibility(true);
-      if (iframeRef.current) {
+      if (isIFrame && currentPath) {
         console.log("ins nav func ===>  111");
         // @ts-ignore
         window.parent.postMessage(
